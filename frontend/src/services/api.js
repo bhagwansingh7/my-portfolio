@@ -2,7 +2,9 @@ import axios from 'axios';
 
 // Same-origin by default (nginx in Docker, Vite proxy in dev). The session lives in an
 // HTTP-only cookie, so nothing sensitive is ever stored in JavaScript-accessible storage.
+console.log("API_URL:", import.meta.env.VITE_API_URL);
 const api = axios.create({
+  
   baseURL: import.meta.env.VITE_API_URL || '/api',
   withCredentials: true,
   timeout: 15000,
