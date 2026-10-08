@@ -1,0 +1,19 @@
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Dependencies & build output
+node_modules/
+dist/
+build/
+
+# Uploaded files (stored in a Docker volume in production)
+backend/uploads/
+
+# Logs / OS / editors
+*.log
+npm-debug.log*
+.DS_Store
+.vscode/
+.idea/

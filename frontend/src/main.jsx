@@ -1,0 +1,26 @@
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
+import { MotionConfig } from 'framer-motion';
+import App from './App.jsx';
+import { ThemeProvider } from './context/ThemeContext.jsx';
+import { ToastProvider } from './context/ToastContext.jsx';
+import { AuthProvider } from './context/AuthContext.jsx';
+import './index.css';
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <BrowserRouter>
+      {/* reducedMotion="user" makes every Framer Motion animation honour prefers-reduced-motion */}
+      <MotionConfig reducedMotion="user">
+        <ThemeProvider>
+          <ToastProvider>
+            <AuthProvider>
+              <App />
+            </AuthProvider>
+          </ToastProvider>
+        </ThemeProvider>
+      </MotionConfig>
+    </BrowserRouter>
+  </React.StrictMode>,
+);

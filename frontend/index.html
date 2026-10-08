@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Full-Stack Developer Portfolio</title>
+    <meta name="description" content="Portfolio of a full-stack developer: projects, skills and ways to get in touch." />
+    <meta name="theme-color" content="#0f131a" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href="/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Full-Stack Developer Portfolio" />
+    <meta property="og:description" content="Portfolio of a full-stack developer: projects, skills and ways to get in touch." />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      // Apply the saved theme before first paint to avoid a flash. Default is dark.
+      try {
+        if (localStorage.getItem('theme') === 'light') document.documentElement.classList.add('light');
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <noscript>This portfolio needs JavaScript enabled.</noscript>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
