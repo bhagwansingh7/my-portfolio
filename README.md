@@ -130,7 +130,7 @@ Admin only (cookie + admin role): `PUT /api/portfolio`, `PUT /api/settings`, `PO
 - Helmet headers, CORS limited to `FRONTEND_URL` (+ `CORS_ORIGINS`), request body size caps, no secrets in the frontend.
 - For production, put the stack behind HTTPS (Caddy, Traefik, a cloud load balancer) and swap the upload driver for S3/R2 if you want object storage — the rest of the app only stores the resulting URL/path.
 
-## Troubleshooting
+## Troubleshooting guide 
 
 - **`required variable … is missing`** – you skipped a value in `.env`.
 - **Backend keeps restarting** – check `docker compose logs backend`. `JWT_SECRET must be at least 32 characters` is the most common cause.
