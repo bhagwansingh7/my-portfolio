@@ -1,18 +1,11 @@
-/**
- * Idempotent seed script. Safe to run on every container start:
- *  - creates the admin account if it does not exist
- *  - fills empty tables with demo data (never overwrites content you've edited)
- *  - writes placeholder images + a placeholder resume into the uploads folder
- *
- * >>> Replace the demo content from the admin dashboard (/admin/login). <<<
- */
+
 const fs = require('fs');
 const path = require('path');
 const bcrypt = require('bcryptjs');
 const env = require('./src/config/env');
 const { pool, waitForDatabase } = require('./src/config/db');
 
-// ---------- placeholder assets ----------
+// placeholder assets 
 const svgWrap = (w, h, inner) =>
   `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" width="${w}" height="${h}" role="img">` +
   `<defs><pattern id="g" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0V32" fill="none" stroke="#2a3441" stroke-width="1"/></pattern>` +
@@ -95,7 +88,7 @@ const PROJECTS = [
     architecture: 'React SPA → Express REST API (JWT in HTTP-only cookies) → MySQL. A service layer isolates the AI provider so it can be swapped or disabled. Everything runs through Docker Compose.',
     challenges: 'Keeping ticket state consistent when several agents act at once, and keeping AI suggestions fast without blocking the request cycle.',
     decisions: 'Used row-level status transitions inside transactions to avoid double assignment, indexed on (status, priority, created_at) for the inbox query, and kept AI calls behind a timeout with a graceful fallback.',
-    github: 'https://github.com/your-username/supportflow', live: null,
+    github: 'https://github.com/bhagwansingh7/SupportFlow-AI-Powered-support-system', live: null,
     techs: ['React', 'Express', 'MySQL', 'JWT', 'Docker', 'REST APIs'],
     features: ['Role-based access for admins and agents', 'Ticket lifecycle with assignment and priorities', 'AI reply suggestions with agent approval', 'Searchable conversation history'],
     highlights: ['Transactional ticket assignment', 'Composite indexes for inbox queries', 'Provider-agnostic AI service layer'],
@@ -109,7 +102,7 @@ const PROJECTS = [
     architecture: 'React/Vite client, Express API, MySQL for data, Redis for caching and rate limits, Socket.IO for live chat, and a RAG pipeline for question answering. Docker Compose wires the services together.',
     challenges: 'Keeping answers grounded rather than invented, and serving weather data quickly without exhausting upstream API limits.',
     decisions: 'Cached weather responses in Redis with short TTLs, retrieved context before every model call, and returned the sources alongside each answer.',
-    github: 'https://github.com/your-username/agrosathi', live: null,
+    github: 'https://github.com/bhagwansingh7/AgroSathi-AI-Powered-Farmers-Support-System', live: null,
     techs: ['React', 'Express', 'MySQL', 'Redis', 'Socket.IO', 'JWT', 'AI / RAG', 'Docker'],
     features: ['Grounded AI answers with sources', 'Weather forecasts for the farmer’s region', 'Real-time support chat', 'Secure accounts with JWT'],
     highlights: ['Retrieval-augmented generation', 'Redis caching for upstream APIs', 'WebSocket-based live support'],
@@ -160,7 +153,7 @@ async function seed() {
         'I’m a software developer who enjoys the full path of a feature: modelling the data, designing a clean API, and shaping an interface that feels fast and clear.\n\nMy projects lean on real engineering problems — authentication, relational design, background processing and containerised deployment — and I care about code that is easy to read, test and change.\n\n(Placeholder text — edit this from Admin → About.)',
         '/uploads/seed-profile.svg',
         '/uploads/seed-resume.pdf',
-        'you@example.com',
+        'bhagwansinghdhangar49@example.com',
         'India',
         'Backend-leaning full-stack work: REST API design, relational databases, secure authentication and clean architecture, with React on the front end.',
         'Deepening system design and database performance, and shipping more of my work with automated CI/CD.',
@@ -212,9 +205,9 @@ async function seed() {
   // Social links
   if (await empty('social_links')) {
     const links = [
-      ['github', 'GitHub', 'https://github.com/your-username'],
-      ['linkedin', 'LinkedIn', 'https://www.linkedin.com/in/your-username'],
-      ['email', 'Email', 'mailto:you@example.com'],
+      ['github', 'GitHub', 'https://github.com/bhagwansingh7'],
+      ['linkedin', 'LinkedIn', 'https://www.linkedin.com/in/bhagwan-singh-dhangar-23389a2a1'],
+      ['email', 'Email', 'mailto:bhagwansinghdhangar49@gmail.com'],
     ];
     for (let i = 0; i < links.length; i += 1) {
       await pool.execute('INSERT INTO social_links (platform, label, url, display_order) VALUES (?, ?, ?, ?)', [...links[i], i + 1]);
