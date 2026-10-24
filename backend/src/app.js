@@ -38,6 +38,7 @@ app.get('/api/health', (req, res) => res.json({ status: 'ok' }));
 app.get('/sitemap.xml', sitemap);
 app.use('/api', apiLimiter, routes);
 app.get('/check',(req,res)=>{res.send('API is working')});
+app.get('/checkconnection',(req,res)=>{res.send('API is working')});
 
 app.use(notFound);
 app.use(errorHandler);
