@@ -18,6 +18,18 @@ const readUser = (req) => {
 };
 
 /** Requires a valid session cookie. */
+
+/* for testing */
+console.log('Cookie header exists:', Boolean(req.headers.cookie));
+console.log('Parsed cookies:', Object.keys(req.cookies || {}));
+console.log('Expected cookie:', COOKIE_NAME);
+console.log(
+  'Expected cookie exists:',
+  Boolean(req.cookies?.[COOKIE_NAME])
+);
+
+
+
 function authenticate(req, res, next) {
   try {
     const user = readUser(req);
