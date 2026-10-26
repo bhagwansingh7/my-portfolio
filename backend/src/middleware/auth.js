@@ -20,7 +20,13 @@ const readUser = (req) => {
 /** Requires a valid session cookie. */
 
 /* for testing */
-console.log('Cookie header exists:', Boolean(req.headers.cookie));
+
+
+
+
+function authenticate(req, res, next) {
+
+  console.log('Cookie header exists:', Boolean(req.headers.cookie));
 console.log('Parsed cookies:', Object.keys(req.cookies || {}));
 console.log('Expected cookie:', COOKIE_NAME);
 console.log(
@@ -30,7 +36,6 @@ console.log(
 
 
 
-function authenticate(req, res, next) {
   try {
     const user = readUser(req);
     if (!user) return res.status(401).json({ message: 'Authentication required.' });
