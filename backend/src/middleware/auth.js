@@ -6,7 +6,7 @@ const COOKIE_NAME = 'portfolio_token';
 const cookieOptions = {
   httpOnly: true, // not readable from JavaScript, so XSS cannot steal the session
   secure: env.cookieSecure,
-  sameSite: 'lax',
+  sameSite: 'none', // allow cross-site requests, so the frontend can call the API
   path: '/',
 };
 
