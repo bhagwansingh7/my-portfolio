@@ -24,14 +24,32 @@ app.use(express.json({ limit: '100kb' }));
 app.use(cookieParser());
 
 // Uploaded files: served as static, inert content (CSP sandbox + nosniff via helmet).
+// app.use(
+//   '/uploads',
+//   (req, res, next) => {
+//     res.set('Content-Security-Policy', "default-src 'none'; style-src 'unsafe-inline'; sandbox");
+//     res.set('Cache-Control', 'public, max-age=604800, immutable');
+//     next();
+//   },
+//   express.static(env.uploadDir, { index: false, dotfiles: 'deny' }),
+// );
+
 app.use(
   '/uploads',
   (req, res, next) => {
-    res.set('Content-Security-Policy', "default-src 'none'; style-src 'unsafe-inline'; sandbox");
-    res.set('Cache-Control', 'public, max-age=604800, immutable');
+    res.set(
+      'Content-Security-Policy',
+      "default-src 'none'; img-src 'self' data:; style-src 'unsafe-inline'; sandbox"
+    );
+
+    res.set('Cache-Control', 'public, max-age=604800');
+
     next();
   },
-  express.static(env.uploadDir, { index: false, dotfiles: 'deny' }),
+  express.static(env.uploadDir, {
+    index: false,
+    dotfiles: 'deny',
+  })
 );
 
 app.get('/api/health', (req, res) => res.json({ status: 'ok' }));
